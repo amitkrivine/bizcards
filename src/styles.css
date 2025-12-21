@@ -1,0 +1,33 @@
+.mainBtns {
+    background-color: #006d77;
+    color: #ffffff;
+}
+.mainBtns:disabled {
+    background-color: #67888b;
+    color: #ffffff;
+}
+.mainBtns:hover {
+    background-color: #0093a0;
+    color: #ffffff;
+}
+
+.secondaryBtns {
+    background-color: #ffffff00;
+    border: 2px solid #006d77;
+    color: #006d77;
+}
+
+.secondaryBtns:hover {
+    background-color: #edf6f9;
+    border: 2px solid #006d77;
+    color: #006d77;
+}
+
+#addBtn {
+    background-color: #006d77;
+    color: #ffffff;
+}
+
+.cardBorder {
+    border: 1px, solid, #006D77;
+}
