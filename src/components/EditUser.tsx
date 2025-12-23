@@ -1,5 +1,4 @@
 import { FunctionComponent, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import User from "../interfaces/User";
@@ -13,8 +12,7 @@ interface EditUserProps {
 }
  
 const EditUser: FunctionComponent<EditUserProps> = ({user, onHide}) => {
-    const navigate = useNavigate();
-    const { darkMode, toggleDarkMode } = useContext(SiteTheme);
+    const { darkMode } = useContext(SiteTheme);
 
     const formik = useFormik({
         enableReinitialize: true,

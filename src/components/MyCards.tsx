@@ -15,7 +15,7 @@ interface MyCardsProps {
  
 const MyCards: FunctionComponent<MyCardsProps> = () => {
     const navigate = useNavigate();
-    const { darkMode, toggleDarkMode } = useContext(SiteTheme);
+    const { darkMode } = useContext(SiteTheme);
     
       const [cards, setCards] = useState<Card[]>([]);
       const [cardId, setCardId] = useState<string>("");
@@ -135,7 +135,7 @@ const MyCards: FunctionComponent<MyCardsProps> = () => {
                                 }}><i className="fa-solid fa-trash-can"></i></button>
                                 <button className="btn" onClick={() => {
                                     setCardId(card._id as string);
-                                    navigate(`/edit-card/${card._id}`);
+                                    navigate(`/edit-card/${cardId}`);
                                     }}><i className="fa-solid fa-pen"></i>
                                 </button>
                             </div>    

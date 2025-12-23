@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { FunctionComponent, useContext } from "react";
 import * as yup from "yup";
 import Navbar from "./Navbar";
-import { addUser, getBusinessCredentials } from "../services/UserService";
+import { addUser } from "../services/UserService";
 import User from "../interfaces/User";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ interface RegisterProps {
  
 const Register: FunctionComponent<RegisterProps> = () => {
     const navigate = useNavigate();
-    const { darkMode, toggleDarkMode } = useContext(SiteTheme);
+    const { darkMode } = useContext(SiteTheme);
 
     const formik = useFormik({
         initialValues: {

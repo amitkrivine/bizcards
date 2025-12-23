@@ -13,7 +13,7 @@ interface LoginProps {
  
 const Login: FunctionComponent<LoginProps> = () => {
     const navigate = useNavigate();
-    const { darkMode, toggleDarkMode } = useContext(SiteTheme);
+    const { darkMode } = useContext(SiteTheme);
 
     const formik = useFormik({
         initialValues: {email: "", password: ""},

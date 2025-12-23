@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect, useState, useContext } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Card from "../interfaces/Card";
-import { cardFavorite, deleteCardById, getAllCards, updateCardById } from "../services/CardService";
+import { cardFavorite, deleteCardById, getAllCards } from "../services/CardService";
 import { getDecodedToken } from "../services/UserService";
 import { SearchContext, SiteTheme } from "../App";
 import { Link, useNavigate } from "react-router-dom";

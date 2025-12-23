@@ -14,7 +14,7 @@ interface AddCardProps {
  
 const AddCard: FunctionComponent<AddCardProps> = () => {
     const navigate = useNavigate();
-    const { darkMode, toggleDarkMode } = useContext(SiteTheme);
+    const { darkMode } = useContext(SiteTheme);
 
     const formik = useFormik({
         initialValues: {title: "", subtitle: "", description: "", phone: "", email: "", web: "", address: {country: "", city: "", state: "", street: "", houseNumber: 0, zip: 0}, image: {url: "", alt: ""}},
