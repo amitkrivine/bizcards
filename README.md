@@ -52,9 +52,7 @@ All registered user features, plus:
 - 📊 **My Cards** - Dedicated page to manage all your business cards
 
 ### For Admin Users
-All business user features, plus:
-- 👥 **User Management (CRM)** - View all registered users in the system
-- 🔄 **Change User Status** - Toggle users between regular and business accounts
+All registered user features, plus:
 - 🗑️ **Delete Users** - Remove users from the system (except other admins)
 - 🛡️ **Full Control** - Edit and delete any business card in the system
 
