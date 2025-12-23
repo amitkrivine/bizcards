@@ -28,7 +28,7 @@ const About: FunctionComponent<AboutProps> = () => {
             <p>Once registered, it allows you to add favorites to your account, and if registered as a business - create new cards as well.</p>
             <p>Business users can also edit and delete their own business cards, to keep them up to date.</p>
         </div>
-        <div className="mb-2">
+        <div className="mb-5">
             <p className="h5 fw-bold py-3">About me</p>
             <p>My name is Amit Krivine, I am a 33 year old full-stack development student.</p>
             <p>I am passionate about creating efficient and user-friendly web applications.</p>
