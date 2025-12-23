@@ -12,13 +12,12 @@ interface UserProfileProps {
 }
  
 const UserProfile: FunctionComponent<UserProfileProps> = () => {
-    const { darkMode, toggleDarkMode } = useContext(SiteTheme);
+    const { darkMode } = useContext(SiteTheme);
 
     const [user, setUser] = useState<User>();
     const [userChanged, setUserChanged] = useState<boolean>(false);
 
     const userToken = getDecodedToken();
-    console.log(userToken);
 
     const refresh = () => setUserChanged(!userChanged);
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -26,7 +25,6 @@ const UserProfile: FunctionComponent<UserProfileProps> = () => {
     useEffect(() => {
         getUserById(userToken?._id as string)
         .then((response) => {
-            console.log(response);
             setUser(response.data);
         })
         .catch((error) => {

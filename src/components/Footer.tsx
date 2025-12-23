@@ -7,7 +7,7 @@ interface FooterProps {
 }
  
 const Footer: FunctionComponent<FooterProps> = () => {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     const navigate = useNavigate();
 
     return (<>

@@ -14,7 +14,7 @@ export function getCardById(cardId : string) {
 export function updateCardById(cardId: string, updatedCard: Card) {
   return axios.put(`${api}/${cardId}`, updatedCard, {
     headers: {
-      "x-auth-token": sessionStorage.getItem("token") || "",
+      "x-auth-token": localStorage.getItem("token") || "",
     },
   });
 }
@@ -22,7 +22,7 @@ export function updateCardById(cardId: string, updatedCard: Card) {
 export function addCard(newCard : Card) {
     return axios.post(api, newCard, {
     headers: {
-      "x-auth-token": sessionStorage.getItem("token") || "",
+      "x-auth-token": localStorage.getItem("token") || "",
     },
   });
 }
@@ -30,7 +30,7 @@ export function addCard(newCard : Card) {
 export function cardFavorite(cardId: string) {
   return axios.patch(`${api}/${cardId}`, {}, {
     headers: {
-      "x-auth-token": sessionStorage.getItem("token") || "",
+      "x-auth-token": localStorage.getItem("token") || "",
     },
   });
 }
@@ -38,7 +38,7 @@ export function cardFavorite(cardId: string) {
 export function deleteCardById(cardId: string) {
   return axios.delete(`${api}/${cardId}`, {
     headers: {
-      "x-auth-token": sessionStorage.getItem("token") || "",
+      "x-auth-token": localStorage.getItem("token") || "",
     },
   });
 }

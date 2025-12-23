@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Card from "../interfaces/Card";
 import { cardFavorite, deleteCardById, getAllCards, updateCardById } from "../services/CardService";
-import { getAllUsers, getDecodedToken } from "../services/UserService";
+import { getDecodedToken } from "../services/UserService";
 import { SearchContext, SiteTheme } from "../App";
 import { Link, useNavigate } from "react-router-dom";
 import Token from "../interfaces/Token";
@@ -15,7 +15,7 @@ interface HomeProps {
  
 const Home: FunctionComponent<HomeProps> = () => {
     const navigate = useNavigate();
-    const { darkMode, toggleDarkMode } = useContext(SiteTheme);
+    const { darkMode } = useContext(SiteTheme);
 
     const { searchText } = useContext(SearchContext);
 
@@ -29,7 +29,14 @@ const Home: FunctionComponent<HomeProps> = () => {
     useEffect(() => {
         getAllCards()
             .then((response) => setCards(response.data))
-            .catch((error) => console.log(error))
+            .catch((error) => {
+                console.log(error)
+                Swal.fire({
+                    title: "Oops...",
+                    text: "Something went wrong",
+                    icon: "error"
+                })
+            })
     }, [cardsChanged]);
 
     const filteredCards = cards.filter((card) => {
@@ -39,9 +46,11 @@ const Home: FunctionComponent<HomeProps> = () => {
     const title = (card.title || "").toLowerCase();
     const subtitle = (card.subtitle || "").toLowerCase();
     const description = (card.description || "").toLowerCase();
+    const city = (card.address?.city || "").toLowerCase();
+    const country = (card.address?.country || "").toLowerCase();
 
     return (
-        title.includes(q) || subtitle.includes(q)
+        title.includes(q) || subtitle.includes(q) || description.includes(q) || city.includes(q) || country.includes(q)
     );
     });
 
@@ -58,7 +67,14 @@ const Home: FunctionComponent<HomeProps> = () => {
 
         cardFavorite(cardId)
             .then(() => refresh())
-            .catch((err) => console.log(err));
+            .catch((error) => {
+                console.log(error);
+                Swal.fire({
+                    title: "Oops...",
+                    text: "Something went wrong",
+                    icon: "error"
+                })
+            });
     };
 
     return (<>
@@ -119,8 +135,8 @@ const Home: FunctionComponent<HomeProps> = () => {
                                                         showConfirmButton: false
                                                     });
                                                 })
-                                                .catch((err) => {
-                                                    console.log(err);
+                                                .catch((error) => {
+                                                    console.log(error);
                                                     Swal.fire({
                                                         title: "Oops...",
                                                         text: "Something went wrong",
@@ -135,16 +151,21 @@ const Home: FunctionComponent<HomeProps> = () => {
                                     }}><i className="fa-solid fa-trash-can"></i></button>
                                     <button className="btn" onClick={() => {
                                         setCardId(card._id as string);
-                                        navigate(`/edit-card/${card._id}`);
-                                        }}><i className="fa-solid fa-pen"></i></button>
+                                        navigate(`/edit-card/${cardId}`);
+                                    }}><i className="fa-solid fa-pen"></i></button>
                                 </>
                                 }
                             </div>    
                             <div className="d-flex flex-row gap-2">
                                 <button className="btn" onClick={() => {
-                                    getAllUsers()
-                                        .then((response) => console.log(response))
-                                        .catch((error) => console.log(error))
+                                    Swal.fire({
+                                        title: "Call Business",
+                                        text: `Calling ${card.phone}...`,
+                                        showCloseButton: false,
+                                        showCancelButton: false,
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                        theme: `${darkMode ? "dark" : "light"}`})
                                 }}><i className="fa-solid fa-phone"></i></button>
                                 {isLoggedIn && <button className="btn" onClick={() => toggleLike(card._id as string)}>
                                     <i className="fa-solid fa-heart" style={{ color: (card.likes || []).includes(userId) ? "red" : "inherit" }} ></i>

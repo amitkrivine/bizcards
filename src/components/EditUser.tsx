@@ -22,7 +22,6 @@ const EditUser: FunctionComponent<EditUserProps> = ({user, onHide}) => {
             name: {first: user.name?.first || "", middle: user.name?.middle || "", last: user.name?.last || "",},
             phone: user.phone || "",
             email: user.email || "",
-            password: user.password || "",
             image: {url: user.image?.url || "", alt: user.image?.alt || "",},
             address: {state: user.address?.state || "", country: user.address?.country || "", city: user.address?.city || "", street: user.address?.street || "", houseNumber: user.address?.houseNumber || 0, zip: user.address?.zip || "",},
             isBusiness: user.isBusiness || false,
@@ -48,13 +47,12 @@ const EditUser: FunctionComponent<EditUserProps> = ({user, onHide}) => {
             })
         }),
         onSubmit: (values) => {
-            console.log(values);
             const payload = {
-            name: values.name,
-            phone: values.phone,
-            image: values.image,
-            address: values.address
-        };
+                name: values.name,
+                phone: values.phone,
+                image: values.image,
+                address: values.address
+            };
 
             updateUser(user._id as string, payload as any)
                 .then((response) => {

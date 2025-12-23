@@ -19,12 +19,12 @@ const Login: FunctionComponent<LoginProps> = () => {
         initialValues: {email: "", password: ""},
         validationSchema: yup.object({
             email: yup.string().required().email().min(5),
-            password: yup.string().required().min(8)
+            password: yup.string().required().min(8, "password must be at least 8 characters").matches(/^(?=(?:.*\d){3,})(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*\-_]).{8,}$/, "password must contain at least 4 digits, one uppercase letter, one lowercase letter and one special character")
         }),
         onSubmit: async values => {
             try{
                 const response = await loginUser({email: values.email, password: values.password });
-                sessionStorage.setItem("token", response.data);
+                localStorage.setItem("token", response.data);
                 console.log("Login successful - ", response.data);
                 navigate("/");
                 Swal.fire({

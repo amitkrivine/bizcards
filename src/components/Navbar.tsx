@@ -104,7 +104,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
                                             imageAlt: "Custom image"
                                         }).then((result) => {
                                             if (result.isConfirmed) {
-                                                sessionStorage.removeItem("token");
+                                                localStorage.removeItem("token");
                                                 navigate("/login");
                                             } else {
                                                 return;

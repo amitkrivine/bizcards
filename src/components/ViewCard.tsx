@@ -14,7 +14,7 @@ interface ViewCardProps {
 }
  
 const ViewCard: FunctionComponent<ViewCardProps> = () => {
-    const { darkMode, toggleDarkMode } = useContext(SiteTheme);
+    const { darkMode } = useContext(SiteTheme);
 
     const { cardId } = useParams();
     
@@ -30,10 +30,7 @@ const ViewCard: FunctionComponent<ViewCardProps> = () => {
         if (!cardId) return;
 
         getCardById(cardId)
-            .then((response) => {
-                setCurrentCard(response.data);
-                console.log("Card data:", response.data)
-            })
+            .then((response) => setCurrentCard(response.data))
             .catch((error) => {
                 console.log(error);
                 Swal.fire({
@@ -78,12 +75,9 @@ const ViewCard: FunctionComponent<ViewCardProps> = () => {
         }
 
         const initMap = async () => {
-            console.log("Initializing Leaflet map...");
-
             try {
                 // Create search query from address
                 const searchQuery = `${currentCard.address?.street} ${currentCard.address?.houseNumber}, ${currentCard.address?.city}, ${currentCard.address?.country}`;
-                console.log("Geocoding address:", searchQuery);
 
                 // Get coordinates with OpenStreetMap's geocoding
                 const coords = await geocodeAddress(searchQuery);
@@ -91,7 +85,6 @@ const ViewCard: FunctionComponent<ViewCardProps> = () => {
                 // Fallback to just city and country
                 if (!coords) {
                     const cityQuery = `${currentCard.address?.city}, ${currentCard.address?.country}`;
-                    console.log("Trying city only:", cityQuery);
                     const cityCoords = await geocodeAddress(cityQuery);
                     
                     if (!cityCoords) {
@@ -99,7 +92,8 @@ const ViewCard: FunctionComponent<ViewCardProps> = () => {
                         Swal.fire({
                             title: "Location not found",
                             text: "Could not find the address on the map",
-                            icon: "warning"
+                            icon: "warning",
+                            theme: `${darkMode ? "dark" : "light"}`
                         });
                         return;
                     }
@@ -139,8 +133,6 @@ const ViewCard: FunctionComponent<ViewCardProps> = () => {
             markerRef.current = marker;
 
             marker.bindPopup(`<strong>${currentCard.title}</strong><br/>${address}`).openPopup();
-
-            console.log("Map initialized successfully");
         };
 
         initMap();

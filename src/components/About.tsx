@@ -20,6 +20,7 @@ const About: FunctionComponent<AboutProps> = () => {
             <p>BizCards is a platform for creating and managing business cards.</p>
             <p>It allows users to view business cards and add favorites to their account.</p>
             <p>Business users can create, edit, and delete their own business cards, for other users to view and favorite.</p>
+            <img src="/bizCardsLogo_full.svg" alt="logo" className="pt-2" style={{maxWidth: "200px"}} />
         </div>
         <div className="mb-4">
             <p className="h6 fw-bold py-3">How does it work?</p>

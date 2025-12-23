@@ -10,7 +10,7 @@ import Home from './components/Home';
 import MyCards from './components/MyCards';
 import UserProfile from './components/UserProfile';
 import ViewCard from './components/ViewCard';
-import LikedCards from './components/LikedCards';
+import LikedCards from './components/FavoriteCards';
 import EditCard from './components/EditCard';
 import Sandbox from './components/Sandbox';
 

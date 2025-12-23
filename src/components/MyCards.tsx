@@ -22,7 +22,6 @@ const MyCards: FunctionComponent<MyCardsProps> = () => {
       const [userId, setUserId] = useState<string>("");
       const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
       const [isBusiness, setIsBusiness] = useState<boolean>(false);
-      const [isAdmin, setIsAdmin] = useState<boolean>(false);
       const [cardsChanged, setCardsChanged] = useState<boolean>(false);
     
       // Check user token and set states

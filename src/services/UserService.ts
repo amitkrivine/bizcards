@@ -6,13 +6,13 @@ import User from "../interfaces/User";
 const api: string = process.env.REACT_APP_API + "/users";
 
 export function getDecodedToken(): Token | null {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     if (!token) return null;
     return jwtDecode<Token>(token);
 }
 
-export function loginUser(credenitals : {email: string, password: string}){
-    return axios.post(`${api}/login`, credenitals);
+export function loginUser(credentials : {email: string, password: string}){
+    return axios.post(`${api}/login`, credentials);
 }
 
 export function getAdminCredentials() {
@@ -26,7 +26,7 @@ export function getBusinessCredentials() {
 }
 
 export function getAllUsers() {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     return axios.get(api, {
         headers: {
             "x-auth-token": token || "",
@@ -35,7 +35,7 @@ export function getAllUsers() {
 }
 
 export function getUserById(userId: string) {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     return axios.get(`${api}/${userId}`, {
         headers: {
             "x-auth-token": token || "",
@@ -48,7 +48,7 @@ export function addUser(newUserDetails: User) {
 }
 
 export function updateUser(userId: string, updatedUser : User) {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     return axios.put(`${api}/${userId}`, updatedUser, {
         headers: {
             "x-auth-token": token || "",
